@@ -6,10 +6,10 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  private config: {
-    baseUrl: 'http://localhsot:5000/api/';
-    masterUrl: 'masters/';
-    saleUrl: 'sales/';
+  private config = {
+    baseUrl: 'http://localhost:5000/api/',
+    masterUrl: 'masters/',
+    saleUrl: 'sales/'
   };
   product: any = [];
   productChange: Subject<any> = new Subject<any>();
@@ -24,10 +24,8 @@ export class HttpService {
     return this._http.post(this.config.baseUrl + this.config.masterUrl, item);
   }
 
-  deleteMaster(item: any) {
-    return this._http.delete(
-      this.config.baseUrl + this.config.masterUrl + item.id
-    );
+  deleteMaster(id: String) {
+    return this._http.delete(this.config.baseUrl + this.config.masterUrl + id);
   }
 
   updateMaster(item: any) {
@@ -42,6 +40,9 @@ export class HttpService {
   }
 
   getSaleProductionId(productId: String) {
+    console.log(
+      this.config.baseUrl + this.config.saleUrl + 'products/' + productId
+    );
     return this._http.get(
       this.config.baseUrl + this.config.saleUrl + 'products/' + productId
     );

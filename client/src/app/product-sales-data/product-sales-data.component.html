@@ -1,3 +1,8 @@
-<p>
-  product-sales-data works!
-</p>
+<div class="container">
+  <div *ngIf="saleData">
+    <p>ProductId: {{saleData.ProductId}}</p>
+    <p>SaleQty: {{saleData.SaleQty}}</p>
+    <p>SalesRev: {{saleData.SalesRev.$numberDecimal}}</p>
+    <p>UnitPrice: {{saleData.UnitPrice.$numberDecimal}}</p>
+  </div>
+</div>

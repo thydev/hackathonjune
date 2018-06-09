@@ -17,23 +17,10 @@ app.use(bodyParser.urlencoded({
 // Allow cross origin 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
-
-// Testing part
-// Return the mocking data for the messages route
-const messages = [{
-    product: 'some test',
-    owner: 'thy'
-}, {
-    product: 'product2',
-    owner: 'toto'
-}];
-app.get(baseUrl + 'messages', (req, res) => {
-    res.json(messages);
-});
-// End of Testing Section
 
 // App routes
 require('./config/routes')(app);

@@ -1,3 +1,34 @@
-<p>
-  list-master-data works!
-</p>
+<div class="container">
+  <!-- {“ProductId”: “1234”, “UPC”: “00602537010196”, “Title”: “Diamonds”, “ArtistName”: “Rihanna”, “RelDate”: “04/21/2017”} -->
+
+  <table class="table table-hover border">
+    <thead>
+      <tr>
+        <th>Product Id</th>
+        <th>UPC</th>
+        <th>Title</th>
+        <th>Artist Name</th>
+        <th>RelDate</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of masters">
+        <td>
+          <span>{{t.ProductId}}</span>
+        </td>
+        <td>{{t.UPC}}</td>
+        <td>
+          <button class="btn btn-link" (click)="showSaleData(t)"> {{t.Title}}</button>
+        </td>
+        <td>{{t.ArtistName}}</td>
+        <td>{{t.RelDate | date: 'MM/d/yy' }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="onDeleteYes(t)">Delete</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <app-product-sales-data [saleData]="selectedSaleData" *ngIf="selectedSaleData"></app-product-sales-data>
+</div>

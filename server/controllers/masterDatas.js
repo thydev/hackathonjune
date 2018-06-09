@@ -89,6 +89,8 @@ module.exports = {
             })
             .exec((err, item) => {
                 if (!err) {
+                    // Should I remove the SalesData too?
+                    // yes
                     res.json({
                         message: 'Success',
                         data: item
