@@ -41,6 +41,26 @@ module.exports = {
             });
     },
 
+    getByProductId: (req, res) => {
+
+        SalesData.find({
+                ProductId: req.params.ProductId
+            })
+            .exec((err, item) => {
+                if (!err) {
+                    res.json({
+                        message: 'Success',
+                        data: item
+                    });
+                } else {
+                    res.json({
+                        message: 'Error',
+                        error: err
+                    })
+                }
+            });
+    },
+
     create: (req, res) => {
         let item = new SalesData(req.body);
         item.save(err => {
@@ -82,6 +102,24 @@ module.exports = {
         const ObjectId = mongoose.Types.ObjectId;
         SalesData.remove({
                 _id: new ObjectId(req.params.id)
+            })
+            .exec((err, item) => {
+                if (!err) {
+                    res.json({
+                        message: 'Success',
+                        data: item
+                    });
+                } else {
+                    res.json({
+                        message: 'Error',
+                        error: err
+                    })
+                }
+            });
+    },
+    removeByProductId: (req, res) => {
+        SalesData.remove({
+                ProductId: req.params.ProductId
             })
             .exec((err, item) => {
                 if (!err) {

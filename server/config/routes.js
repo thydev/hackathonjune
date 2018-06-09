@@ -13,9 +13,11 @@ module.exports = (app) => {
 
     // SalesData Routes
     app.get(baseUrl + 'sales', sales.getAll);
-    app.get(baseUrl + 'sales/:id', sales.getById);
+    // app.get(baseUrl + 'sales/:id', sales.getById);
+    app.get(baseUrl + 'sales/products/:ProductId', sales.getByProductId);
     app.post(baseUrl + 'sales', sales.create);
     app.put(baseUrl + 'sales/:id', sales.updateById);
-    app.delete(baseUrl + 'sales/:id', sales.removeById);
+    // app.delete(baseUrl + 'sales/:id', sales.removeById);
+    app.delete(baseUrl + 'sales/products/:ProductId', sales.removeByProductId);
 
 }

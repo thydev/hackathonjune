@@ -2,10 +2,8 @@ const port = 5000;
 const baseUrl = '/api/';
 
 const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-
 const app = express();
+const bodyParser = require('body-parser');
 
 // Databaes / Model Section
 require('./config/mongoose');
