@@ -10,6 +10,7 @@ module.exports = (app) => {
     app.post(baseUrl + 'masters', masters.create);
     app.put(baseUrl + 'masters/:id', masters.updateById);
     app.delete(baseUrl + 'masters/:id', masters.removeById);
+    app.delete(baseUrl + 'masters/products/:ProductId', masters.removeByProductId);
 
     // SalesData Routes
     app.get(baseUrl + 'sales', sales.getAll);

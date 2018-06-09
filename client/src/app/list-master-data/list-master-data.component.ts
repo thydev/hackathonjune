@@ -23,9 +23,18 @@ export class ListMasterDataComponent implements OnInit {
   }
 
   onDeleteYes(item: any): void {
-    const obsItem = this._httpService.deleteMaster(item._id);
+    const obsItem = this._httpService.deleteMaster(item.ProductId);
     obsItem.subscribe(data => {
-      this.getAll();
+      if (data['message'] === 'Success') {
+        // Delete SalesData
+        console.log(item);
+        const obsSale = this._httpService.deleteSale(item.ProductId);
+        obsSale.subscribe(saleData => {
+          if (saleData['message'] === 'Success') {
+            this.getAll();
+          }
+        });
+      }
     });
   }
 

@@ -24,8 +24,11 @@ export class HttpService {
     return this._http.post(this.config.baseUrl + this.config.masterUrl, item);
   }
 
-  deleteMaster(id: String) {
-    return this._http.delete(this.config.baseUrl + this.config.masterUrl + id);
+  deleteMaster(ProductId: String) {
+    return this._http.delete(
+      // this.config.baseUrl + this.config.masterUrl + ProductId
+      this.config.baseUrl + this.config.masterUrl + 'products/' + ProductId
+    );
   }
 
   updateMaster(item: any) {
@@ -40,9 +43,6 @@ export class HttpService {
   }
 
   getSaleProductionId(productId: String) {
-    console.log(
-      this.config.baseUrl + this.config.saleUrl + 'products/' + productId
-    );
     return this._http.get(
       this.config.baseUrl + this.config.saleUrl + 'products/' + productId
     );

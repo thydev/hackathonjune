@@ -103,5 +103,25 @@ module.exports = {
                 }
             });
     },
+    removeByProductId: (req, res) => {
+        MasterData.remove({
+                ProductId: req.params.ProductId
+            })
+            .exec((err, item) => {
+                if (!err) {
+                    // Should I remove the SalesData too?
+                    // yes
+                    res.json({
+                        message: 'Success',
+                        data: item
+                    });
+                } else {
+                    res.json({
+                        message: 'Error',
+                        error: err
+                    })
+                }
+            });
+    },
 
 }
