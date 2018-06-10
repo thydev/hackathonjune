@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 
 module.exports = (() => {
     mongoose.Promise = global.Promise;
-    // mongoose.connect('mongodb://localhost:27017/ProductMasterSalesData');
+    mongoose.connect('mongodb://localhost:27017/ProductMasterSalesData');
 
     // Use your own username and passowrd
     // mongoose.connect('mongodb+srv://username:password@cluster0-yi1u9.mongodb.net/ProductMasterSalesData?retryWrites=true');
