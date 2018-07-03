@@ -2,36 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
 
+import { Product } from '../models/product';
+import { Sale } from '../models/sale';
+
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css']
 })
 export class CreateProductComponent implements OnInit {
-  product = {
-    ProductId: '',
-    UPC: '',
-    Title: '',
-    ArtistName: '',
-    RelDate: '',
-    SaleQty: '',
-    SalesRev: '',
-    UnitPrice: ''
-  };
+  product: Product;
+  sale: Sale;
   message = '';
   errors: any;
   constructor(private _httpServie: HttpService, private _router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.product = new Product();
+    this.sale = new Sale();
+  }
 
   onSubmit() {
+    // Save product
     const obsItem = this._httpServie.createMaster(this.product);
     obsItem.subscribe(data => {
       // console.log(data);
       this.message = data['message'];
       if (data['message'] === 'Success') {
         this.message = ': ' + this.product.ProductId + ' was added!';
-        const saleObs = this._httpServie.createSale(this.product);
+
+        // Save sale data
+        this.sale.ProductId = this.product.ProductId;
+        const saleObs = this._httpServie.createSale(this.sale);
         saleObs.subscribe(saleData => {
           if (saleData['message'] === 'Success') {
             this.goHome();
@@ -41,21 +43,7 @@ export class CreateProductComponent implements OnInit {
         });
       } else {
         console.log(data['error'].errors);
-        this.errors = {
-          name: '',
-          pettype: '',
-          description: ''
-        };
         this.errors = data['error'].errors;
-        // if (data['error'].errors['name']) {
-        //   this.errors.name = data['error'].errors['name'];
-        // }
-        // if (data['error'].errors['pettype']) {
-        //   this.errors.pettype = data['error'].errors['pettype'];
-        // }
-        // if (data['error'].errors['description']) {
-        //   this.errors.description = data['error'].errors['description'];
-        // }
       }
     });
   }

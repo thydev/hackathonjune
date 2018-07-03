@@ -13,7 +13,8 @@
       <label class="control-label col-sm-3" for="pwd">UPC:</label>
       <div class="col-sm-9">
         <span [hidden]="UPC.valid" class="text-danger">*UPC should be 12 digit numeric field.</span>
-        <input type="text" class="form-control" name="UPC" [(ngModel)]="product.UPC" required minlength="12" maxlength="12" pattern="[0-9]+" #UPC="ngModel">
+        <input type="text" class="form-control" name="UPC" [(ngModel)]="product.UPC" required minlength="12" maxlength="12" pattern="[0-9]+"
+          #UPC="ngModel">
       </div>
     </div>
     <div class="form-group">
@@ -41,21 +42,21 @@
       <label class="control-label col-sm-3" for="pwd">SaleQty:</label>
       <div class="col-sm-9">
         <span [hidden]="SaleQty.valid" class="text-danger">*SaleQty should be numeric field</span>
-        <input type="number" class="form-control" name="SaleQty" [(ngModel)]="product.SaleQty" required #SaleQty="ngModel">
+        <input type="number" class="form-control" name="SaleQty" [(ngModel)]="sale.SaleQty" required #SaleQty="ngModel">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="pwd">SalesRev:</label>
       <div class="col-sm-9">
         <span [hidden]="SalesRev.valid" class="text-danger">*SalesRev should be decimal field.</span>
-        <input type="number" class="form-control" name="SalesRev" [(ngModel)]="product.SalesRev" required #SalesRev="ngModel">
+        <input type="number" class="form-control" name="SalesRev" [(ngModel)]="sale.SalesRev" required #SalesRev="ngModel">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="pwd">UnitPrice:</label>
       <div class="col-sm-9">
         <span [hidden]="UnitPrice.valid" class="text-danger">*UnitPrice should be decimal field.</span>
-        <input type="number" class="form-control" name="UnitPrice" [(ngModel)]="product.UnitPrice" required #UnitPrice="ngModel">
+        <input type="number" class="form-control" name="UnitPrice" [(ngModel)]="sale.UnitPrice" required #UnitPrice="ngModel">
       </div>
     </div>
     <div class="form-group">

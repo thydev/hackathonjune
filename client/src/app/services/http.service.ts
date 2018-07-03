@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
+import { Product } from '../models/product';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +13,7 @@ export class HttpService {
     masterUrl: 'masters/',
     saleUrl: 'sales/'
   };
-  product: any = [];
+  product: Product[] = [];
   productChange: Subject<any> = new Subject<any>();
 
   constructor(private _http: HttpClient) {}
@@ -42,7 +44,7 @@ export class HttpService {
     return this._http.get(this.config.baseUrl + this.config.saleUrl);
   }
 
-  getSaleProductionId(productId: String) {
+  getSaleProductionId(productId: number) {
     return this._http.get(
       this.config.baseUrl + this.config.saleUrl + 'products/' + productId
     );

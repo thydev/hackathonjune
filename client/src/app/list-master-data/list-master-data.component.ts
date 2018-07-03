@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service';
 
+import { Product } from '../models/product';
+import { Sale } from '../models/sale';
 @Component({
   selector: 'app-list-master-data',
   templateUrl: './list-master-data.component.html',
   styleUrls: ['./list-master-data.component.css']
 })
 export class ListMasterDataComponent implements OnInit {
-  masters: any;
-  selectedSaleData: any;
+  masters: Product[];
+  selectedSaleData: Sale[];
   constructor(private _httpService: HttpService) {}
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class ListMasterDataComponent implements OnInit {
     });
   }
 
-  showSaleData(item: any): void {
+  showSaleData(item: Product): void {
     // console.log(item);
     const obsItem = this._httpService.getSaleProductionId(item.ProductId);
     obsItem.subscribe(data => {
